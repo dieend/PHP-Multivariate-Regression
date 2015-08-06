@@ -255,7 +255,11 @@ class Matrix
 
         for($i = 0; $i < $rows; $i++){
             for($j = 0; $j < $columns; $j++){
-                $newMatrix[$i][$j] = $this->MainMatrix[$i][$j] / $scalar;
+                if ($scalar !== 0) {
+                    $newMatrix[$i][$j] = $this->MainMatrix[$i][$j] / $scalar;
+                } else {
+                    throw new MatrixException("Division by zero");
+                }
             }
         }
         return new Matrix($newMatrix);
